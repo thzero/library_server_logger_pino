@@ -1,6 +1,6 @@
 import pino from 'pino';
 
-import Service from '@thzero/library/service/index';
+import Service from '@thzero/library_server/service/index';
 
 const CLIENT_PREFIX = 'CLIENT: ';
 
