@@ -5,22 +5,7 @@ import Service from '@thzero/library_server/service/index';
 const CLIENT_PREFIX = 'CLIENT: ';
 
 class LoggerService extends Service {
-	async init(injector) {
-		await super.init(injector);
-
-		const configLogging = this._config.get('logging');
-		const logLevel = configLogging.level || process.env.LOG_LEVEL || null;
-		const prettify = configLogging.prettify || process.env.LOG_PRETTIFY || false;
-		console.log('\n\n-----');
-		console.log(`configLogging.level: ${configLogging.level}`);
-		console.log(`process.env.LOG_LEVEL: ${process.env.LOG_LEVEL}`);
-		console.log(`logLevel: ${logLevel}`);
-		console.log('-----');
-		console.log(`configLogging.prettify: ${configLogging.prettify}`);
-		console.log(`process.env.LOG_PRETTIFY: ${process.env.LOG_PRETTIFY}`);
-		console.log(`prettify: ${prettify}`);
-		console.log('-----\n\n');
-
+	async initLogger(logLevel, prettify, config) {
 		if (prettify) {
 			this._log = pino({
 				level: logLevel,
