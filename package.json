@@ -1,9 +1,9 @@
 {
   "name": "@thzero/library_server_logger_pino",
-  "version": "0.7.50",
+  "version": "0.7.51",
   "version_major": 0,
   "version_minor": 7,
-  "version_patch": 50,
+  "version_patch": 51,
   "version_date": "08/23/2020",
   "author": "thZero",
   "license": "MIT",
