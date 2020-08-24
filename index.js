@@ -35,7 +35,7 @@ class LoggerService extends Service {
 
 	error(clazz, method, message, data, isClient) {
 		data = (data === undefined ? null : data);
-		this._log.error(data, this._format(clazz, method, mmessage, isClient));
+		this._log.error(data, this._format(clazz, method, message, isClient));
 	}
 
 	error2(message, data, isClient) {
@@ -55,7 +55,7 @@ class LoggerService extends Service {
 
 	fatal(clazz, method, message, data, isClient) {
 		data = (data === undefined ? null : data);
-		this._log.fatal(data, this._format(clazz, method, mmessage, isClient));
+		this._log.fatal(data, this._format(clazz, method, message, isClient));
 	}
 
 	fatal2(message, data, isClient) {
@@ -65,7 +65,7 @@ class LoggerService extends Service {
 
 	info(clazz, method, message, data, isClient) {
 		data = (data === undefined ? null : data);
-		this._log.info(data, this._format(clazz, method, mmessage, isClient));
+		this._log.info(data, this._format(clazz, method, message, isClient));
 	}
 
 	info2(message, data, isClient) {
@@ -75,7 +75,7 @@ class LoggerService extends Service {
 
 	trace(clazz, method, message, data, isClient) {
 		data = (data === undefined ? null : data);
-		this._log.trace(data, this._format(clazz, method, mmessage, isClient));
+		this._log.trace(data, this._format(clazz, method, message, isClient));
 	}
 
 	trace2(message, data, isClient) {
@@ -85,7 +85,7 @@ class LoggerService extends Service {
 
 	warn(clazz, method, message, data, isClient) {
 		data = (data === undefined ? null : data);
-		this._log.warn(data, this._format(clazz, method, mmessage, isClient));
+		this._log.warn(data, this._format(clazz, method, message, isClient));
 	}
 
 	warn2(message, data, isClient) {
@@ -94,13 +94,18 @@ class LoggerService extends Service {
 	}
 
 	_format(clazz, method, message, isClient) {
-		let output = clazz;
+		let output = '';
+		if (!String.isNullOrEmpty(clazz))
+			output += clazz;
 		if (!String.isNullOrEmpty(output))
 			output += '.';
-		output += method;
+		if (!String.isNullOrEmpty(method))
+			output += method;
 		if (!String.isNullOrEmpty(output))
 			output += ': ';
-		output += (isClient ? CLIENT_PREFIX : '') + message;
+		output += (isClient ? CLIENT_PREFIX : '');
+		if (!String.isNullOrEmpty(message))
+			output += message;
 		return output;
 	}
 }
