@@ -23,8 +23,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@thzero/library_server": "^0.12.11",
-    "pino": "^6.8.0"
+    "@thzero/library_server": "^0.12.15",
+    "pino": "^6.9.0"
   },
   "devDependencies": {
     "@thzero/library_cli": "^0.12.0"
