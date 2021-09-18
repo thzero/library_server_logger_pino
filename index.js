@@ -13,7 +13,7 @@ class LoggerService extends Service {
 					levelFirst: true
 				},
 				// eslint-disable-next-line
-				prettifier: require(require.resolve('pino-pretty', { paths: [ require.main.filename ] }))
+				//prettifier: require(require.resolve('pino-pretty', { paths: [ require.main.filename ] }))
 			});
 		}
 		else {
