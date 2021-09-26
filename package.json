@@ -1,10 +1,10 @@
 {
   "name": "@thzero/library_server_logger_pino",
-  "version": "0.13.17",
+  "version": "0.13.18",
   "version_major": 0,
   "version_minor": 13,
-  "version_patch": 17,
-  "version_date": "09/18/2021",
+  "version_patch": 18,
+  "version_date": "09/26/2021",
   "author": "thZero",
   "license": "MIT",
   "repository": {
@@ -24,10 +24,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "pino": "^6.13.2"
+    "pino": "^6.13.3"
   },
   "devDependencies": {
-    "@thzero/library_cli": "^0.13.18"
+    "@thzero/library_cli": "^0.13.19"
   },
   "peerDependencies": {
     "@thzero/library_common": "^0.13",
