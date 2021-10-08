@@ -28,7 +28,7 @@ class LoggerService extends Service {
 	}
 
 	debug2(message, data, correlationId, isClient) {
-		this._log.debug({ property: message, value: data }, this._format(clazz, method, null, correlationId, isClient));
+		this._log.debug({ property: message, value: data }, this._format(null, null, null, correlationId, isClient));
 	}
 
 	error(clazz, method, message, data, correlationId, isClient) {
