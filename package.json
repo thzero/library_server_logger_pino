@@ -26,7 +26,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "pino": "^7.0.1"
+    "pino": "^7.0.3"
   },
   "devDependencies": {
     "@thzero/library_cli": "^0.13.21"
