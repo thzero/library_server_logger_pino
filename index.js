@@ -7,14 +7,20 @@ const CLIENT_PREFIX = 'CLIENT: ';
 class LoggerService extends Service {
 	async initLogger(logLevel, prettify, config) {
 		if (prettify) {
-			this._log = pino({
-				level: logLevel,
-				prettyPrint: {
-					levelFirst: true
-				},
-				// eslint-disable-next-line
-				//prettifier: require(require.resolve('pino-pretty', { paths: [ require.main.filename ] }))
+			// this._log = pino({
+			// 	level: logLevel,
+			// 	prettyPrint: {
+			// 		levelFirst: true
+			// 	},
+			// 	// eslint-disable-next-line
+			// 	//prettifier: require(require.resolve('pino-pretty', { paths: [ require.main.filename ] }))
+			// });
+			const transport = pino.transport({
+				targets: [
+					{ target: 'pino-pretty', options: { level: logLevel } }
+				]
 			});
+			this._log = pino(transport);
 		}
 		else {
 			this._log = pino({
