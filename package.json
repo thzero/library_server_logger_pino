@@ -2,11 +2,11 @@
   "name": "@thzero/library_server_logger_pino",
   "type": "module",
   "exports": "./index.js",
-  "version": "0.15.6",
+  "version": "0.15.7",
   "version_major": 0,
   "version_minor": 15,
-  "version_patch": 6,
-  "version_date": "12/31/2021",
+  "version_patch": 7,
+  "version_date": "01/29/2022",
   "author": "thZero",
   "license": "MIT",
   "repository": {
@@ -26,10 +26,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "pino": "^7.6.2"
+    "pino": "^7.6.5"
   },
   "devDependencies": {
-    "@thzero/library_cli": "^0.13.21"
+    "@thzero/library_cli": "^0.15.2"
   },
   "peerDependencies": {
     "@thzero/library_common": "^0.15",
