@@ -74,6 +74,10 @@ class LoggerService extends Service {
 		this._log.info(data ? { data: data } : {}, this._format(null, null, message, correlationId, isClient));
 	}
 
+	raw(message, data, correlationId, isClient) {
+		this._log.info(data, message);
+	}
+
 	trace(clazz, method, message, data, correlationId, isClient) {
 		data = (data === undefined ? null : data);
 		this._log.trace({ property: message, value: data }, this._format(clazz, method, message, correlationId, isClient));
