@@ -54,7 +54,7 @@ class LoggerService extends Service {
 
 	exception2(ex, correlationId, isClient) {
 		ex = (ex === undefined ? null : ex);
-		this._log.error(ex, this._format(null, null, message, correlationId, isClient));
+		this._log.error(ex, this._format(null, null, null, correlationId, isClient));
 	}
 
 	fatal(clazz, method, message, data, correlationId, isClient) {
