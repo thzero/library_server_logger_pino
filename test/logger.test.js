@@ -6,12 +6,15 @@ import LoggerService from '../index.js';
 
 let service;
 let logged;
+let disabled;
 
 beforeEach(() => {
 	service = new LoggerService();
 	logged = [];
+	disabled = new Set();
 	const record = (level) => (payload, message) => logged.push({ level, payload, message });
 	service._log = {
+		isLevelEnabled: (level) => !disabled.has(level),
 		debug: record('debug'),
 		error: record('error'),
 		fatal: record('fatal'),
@@ -19,6 +22,38 @@ beforeEach(() => {
 		trace: record('trace'),
 		warn: record('warn')
 	};
+});
+
+// pino compares the level itself, but only once it has been handed the payload
+// object and the formatted string. The wrapper asks first.
+describe('level gate', () => {
+	it('does not format or call pino for a level that is off', () => {
+		let formats = 0;
+		service._format = () => { formats++; return ''; };
+		disabled.add('debug').add('trace');
+
+		service.debug('C', 'm', 'msg', { big: true }, 'cid');
+		service.debug2('msg', null, 'cid');
+		service.trace('C', 'm', 'msg', null, 'cid');
+		service.trace2('msg', null, 'cid');
+
+		assert.equal(logged.length, 0);
+		assert.equal(formats, 0);
+	});
+
+	it('still logs the levels that are on', () => {
+		disabled.add('debug');
+		service.debug('C', 'm', 'msg', null, 'cid');
+		service.info('C', 'm', 'msg', null, 'cid');
+		service.exception('C', 'm', new Error('boom'), 'cid');
+		assert.deepEqual(logged.map(entry => entry.level), [ 'info', 'error' ]);
+	});
+
+	it('logs everything through a pino without the check', () => {
+		delete service._log.isLevelEnabled;
+		service.debug('C', 'm', 'msg', null, 'cid');
+		assert.equal(logged.length, 1);
+	});
 });
 
 describe('_format', () => {
