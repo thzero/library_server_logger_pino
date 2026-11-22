@@ -147,3 +147,21 @@ describe('exception', () => {
 		assert.equal(logged[0].message, '(cid) ');
 	});
 });
+
+describe('flush', () => {
+	it('waits for pino to flush', async () => {
+		let flushed = false;
+		service._log.flush = (cb) => setTimeout(() => { flushed = true; cb(); }, 5);
+		await service.flush();
+		assert.equal(flushed, true);
+	});
+
+	it('does not reject when pino throws', async () => {
+		service._log.flush = () => { throw new Error('closed'); };
+		await service.flush();
+	});
+
+	it('does nothing without a flush', async () => {
+		await service.flush();
+	});
+});

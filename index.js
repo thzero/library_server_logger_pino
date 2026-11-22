@@ -89,6 +89,20 @@ class LoggerService extends Service {
 		this._log.fatal(data ? { error: data } : {}, this._format(null, null, message, correlationId, isClient));
 	}
 
+	async flush() {
+		if (!this._log || (typeof this._log.flush !== 'function'))
+			return;
+
+		await new Promise((resolve) => {
+			try {
+				this._log.flush(() => resolve());
+			}
+			catch {
+				resolve();
+			}
+		});
+	}
+
 	info(clazz, method, message, data, correlationId, isClient) {
 		if (!this._enabled('info'))
 			return;
